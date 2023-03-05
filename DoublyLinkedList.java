@@ -54,11 +54,41 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> {
 	public void add(T x) {add(new Entry<T>(x, null, null));}
 
 	private void add(Entry<T> node) {
+		// which tail is updated: DEBUG
 		node.prev = tail;
 		super.add((SinglyLinkedList.Entry<T>) node);
+		tail = ((Entry<T>) (super.tail));
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Hello there!");
+		DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
+		Iterator<Integer> it = dll.iterator();
+
+		int n = 10;
+		for(int i=1; i<=n; i++) {
+			dll.add(Integer.valueOf(i));
+		}
+		dll.printList();
+
+		Scanner in = new Scanner(System.in);
+		whileloop:
+		while(in.hasNext()) {
+			int com = in.nextInt();
+			switch(com) {
+				case 1:  // Move to next element and print it
+					if (it.hasNext()) {
+						System.out.println(it.next());
+					} else {
+						break whileloop;
+					}
+					break;
+				case 2:  // Remove element
+					it.remove();
+					dll.printList();
+					break;
+				default:  // Exit loop
+					break whileloop;
+			}
+		}
 	}
 }
