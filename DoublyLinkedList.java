@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 import java.util.NoSuchElementException;
 
@@ -16,8 +17,8 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> {
 		super();
 		head = new Entry<>(null, null, null);
 		tail = head;
-		super.head = (SinglyLinkedList.Entry<T>) (head);
-		super.tail = (SinglyLinkedList.Entry<T>) (tail);
+		super.head = head;
+		super.tail = tail;
 	}
 
 
@@ -54,10 +55,14 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> {
 	public void add(T x) {add(new Entry<T>(x, null, null));}
 
 	private void add(Entry<T> node) {
-		// which tail is updated: DEBUG
 		node.prev = tail;
-		super.add((SinglyLinkedList.Entry<T>) node);
-		tail = ((Entry<T>) (super.tail));
+		super.add(node);
+		tail = (Entry<T>) super.tail;
+	}
+
+	public static<T extends Comparable<? super T>>
+		void intersect(List<T> l1, List<T> l2, List<T> outList) {
+
 	}
 
 	public static void main(String[] args) {

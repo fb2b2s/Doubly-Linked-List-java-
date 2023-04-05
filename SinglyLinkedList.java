@@ -30,41 +30,41 @@ public class SinglyLinkedList<T> implements Iterable<T> {
     public Iterator<T> iterator() { return new SLLIterator(); }
 
     protected class SLLIterator implements Iterator<T> {
-	Entry<T> cursor, prev;
-	boolean ready;  // is item ready to be removed?
+		Entry<T> cursor, prev;
+		boolean ready;  // is item ready to be removed?
 
-	SLLIterator() {
-	    cursor = head;
-	    prev = null;
-	    ready = false;
-	}
+		SLLIterator() {
+			cursor = head;
+			prev = null;
+			ready = false;
+		}
 
-	public boolean hasNext() {
-	    return cursor.next != null;
-	}
-	
-	public T next() {
-	    prev = cursor;
-	    cursor = cursor.next;
-	    ready = true;
-	    return cursor.element;
-	}
+		public boolean hasNext() {
+			return cursor.next != null;
+		}
 
-	// Removes the current element (retrieved by the most recent next())
-	// Remove can be called only if next has been called and the element has not been removed
-	public void remove() {
-	    if(!ready) {
-			throw new NoSuchElementException();
-	    }
-	    prev.next = cursor.next;
-	    // Handle case when tail of a list is deleted
-	    if(cursor == tail) {
-			tail = prev;
-	    }
-	    cursor = prev;
-	    ready = false;  // Calling remove again without calling next will result in exception thrown
-	    size--;
-	}
+		public T next() {
+			prev = cursor;
+			cursor = cursor.next;
+			ready = true;
+			return cursor.element;
+		}
+
+		// Removes the current element (retrieved by the most recent next())
+		// Remove can be called only if next has been called and the element has not been removed
+		public void remove() {
+			if(!ready) {
+				throw new NoSuchElementException();
+			}
+			prev.next = cursor.next;
+			// Handle case when tail of a list is deleted
+			if(cursor == tail) {
+				tail = prev;
+			}
+			cursor = prev;
+			ready = false;  // Calling remove again without calling next will result in exception thrown
+			size--;
+		}
     }  // end of class SLLIterator
 
     // Add new elements to the end of the list
@@ -79,12 +79,12 @@ public class SinglyLinkedList<T> implements Iterable<T> {
     }
 
     public void printList() {
-	System.out.print(this.size + ": ");
-	for(T item: this) {
-	    System.out.print(item + " ");
-	}
+		System.out.print(this.size + ": ");
+		for(T item: this) {
+			System.out.print(item + " ");
+		}
 
-	System.out.println();
+		System.out.println();
     }
 
     // Rearrange the elements of the list by linking the elements at even index
